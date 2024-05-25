@@ -1,10 +1,11 @@
-#coding: utf8
 import cocos
 from cocos.sprite import Sprite
 from pyaudio import PyAudio, paInt16
 import struct
+import os
 from ppx import PPX
 from block import Block
+import pyglet
 
 class VoiceGame(cocos.layer.ColorLayer):
     is_event_handler = True
@@ -28,6 +29,10 @@ class VoiceGame(cocos.layer.ColorLayer):
 
         self.ppx = PPX()
         self.add(self.ppx)
+
+        # 加载新生成的图像
+        if os.path.exists('ppx.png'):
+            self.ppx.image = pyglet.image.load('ppx.png')
 
         self.floor = cocos.cocosnode.CocosNode()
         self.add(self.floor)
@@ -69,8 +74,3 @@ class VoiceGame(cocos.layer.ColorLayer):
 
     def reset(self):
         self.floor.x = 0
-
-
-# cocos.director.director.init(caption="Let's Go! PiPiXia!")
-# cocos.director.director.run(cocos.scene.Scene(VoiceGame()))
-
