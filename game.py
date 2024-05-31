@@ -3,7 +3,7 @@ from cocos.sprite import Sprite
 from pyaudio import PyAudio, paInt16
 import struct
 import os
-from ppx import PPX
+from player import player
 from block import Block
 import pyglet
 
@@ -12,10 +12,6 @@ class VoiceGame(cocos.layer.ColorLayer):
 
     def __init__(self):
         super(VoiceGame, self).__init__(255, 255, 255, 255, 800, 600)
-
-        self.logo = cocos.sprite.Sprite('crossin-logo.png')
-        self.logo.position = 550, 400
-        self.add(self.logo, 99999)
 
         # init voice
         self.NUM_SAMPLES = 1000  # pyAudio内部缓存的块的大小
@@ -27,12 +23,12 @@ class VoiceGame(cocos.layer.ColorLayer):
         self.voicebar.image_anchor = 0, 0
         self.add(self.voicebar)
 
-        self.ppx = PPX()
-        self.add(self.ppx)
+        self.player = player()
+        self.add(self.player)
 
         # 加载新生成的图像
-        if os.path.exists('ppx.png'):
-            self.ppx.image = pyglet.image.load('ppx.png')
+        if os.path.exists('player.png'):
+            self.player.image = pyglet.image.load('player.png')
 
         self.floor = cocos.cocosnode.CocosNode()
         self.add(self.floor)
@@ -53,11 +49,11 @@ class VoiceGame(cocos.layer.ColorLayer):
         pass
 
     def collide(self):
-        px = self.ppx.x - self.floor.x
+        px = self.player.x - self.floor.x
         for b in self.floor.get_children():
-            if b.x <= px + self.ppx.width * 0.8 and px + self.ppx.width * 0.2 <= b.x + b.width:
-                if self.ppx.y < b.height:
-                    self.ppx.land(b.height)
+            if b.x <= px + self.player.width * 0.8 and px + self.player.width * 0.2 <= b.x + b.width:
+                if self.player.y < b.height:
+                    self.player.land(b.height)
                     break
 
     def update(self, dt):

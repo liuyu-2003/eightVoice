@@ -3,9 +3,9 @@ import math
 import random
 import cocos
 
-class PPX(cocos.sprite.Sprite):
+class player(cocos.sprite.Sprite):
     def __init__(self):
-        super(PPX, self).__init__('ppx.png')
+        super(player, self).__init__('player.png')
         self.can_jump = False
         self.speed = 0
         self.image_anchor = 0, 0
@@ -16,7 +16,7 @@ class PPX(cocos.sprite.Sprite):
         if self.can_jump:
             self.y += 1
             self.speed -= max(min(h, 10), 7)
-            self.can_jump = False
+            self.can_jump = False#精灵正在空中，不能再次跳跃
 
     def land(self, y):
         if self.y > y - 30:

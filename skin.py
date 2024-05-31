@@ -19,7 +19,7 @@ class CustomizeSkinLayer(cocos.layer.Layer):
         self.text = ""
         self.result = None
 
-        self.label = Label('描述皮肤:', font_size=18, anchor_x='center', anchor_y='center')
+        self.label = Label('描述皮肤:', font_size=28, anchor_x='center', anchor_y='center')
         self.label.position = 400, 500
         self.add(self.label)
 
@@ -36,7 +36,7 @@ class CustomizeSkinLayer(cocos.layer.Layer):
         # 创建菜单
         self.menu = Menu()
         self.menu.create_menu(items, shake(), shake_back())
-        self.menu.position = 400, 300
+        self.menu.position = 200, 284
         self.add(self.menu)
 
     def on_key_press(self, symbol, modifiers):
@@ -82,12 +82,12 @@ class CustomizeSkinLayer(cocos.layer.Layer):
                         resized_image = image.resize((80, 56))
 
                         # 保存生成的图像
-                        resized_image.save('ppx.png')
-                        print('Image generated, resized to 80x56, and saved as ppx.png')
+                        resized_image.save('player.png')
+                        print('Image generated, resized to 80x56, and saved as player.png')
 
                         if self.result:
                             self.remove(self.result)
-                        self.result = Sprite('ppx.png')
+                        self.result = Sprite('player.png')
                         self.result.position = 400, 200
                         self.add(self.result)
                     else:

@@ -27,12 +27,12 @@ class MainMenu(Menu):
             MenuItem('自定义皮肤', on_customize_skin)
         ]
 
-        self.create_menu(items, shake(), shake_back())
+        self.create_menu(items, zoom_in(), zoom_out())
 
 # 主函数
 if __name__ == '__main__':
     # 初始化导演
-    cocos.director.director.init(caption="Let's Go! PiPiXia!", width=800, height=600)
+    cocos.director.director.init(caption="Let's Go!", width=800, height=600)
 
     # 创建一个菜单场景并运行
     main_menu_scene = Scene(MainMenu())
