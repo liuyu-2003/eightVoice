@@ -57,7 +57,7 @@ class CustomizeSkinLayer(cocos.layer.Layer):
     def generate_skin(self, description):
         try:
             response = requests.post('https://api.holdai.top/v1/images/generations', json={
-                'prompt': description,
+                'prompt': description+",Make this image appear to be a 3D image",
                 'size': '256x256',
                 'model': 'dall-e-2'
             }, headers={

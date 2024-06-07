@@ -12,6 +12,8 @@ class player(cocos.sprite.Sprite):
         self.position = 100, 300
         self.schedule(self.update)
 
+        self.isShadow = False
+
     def jump(self, h):
         if self.can_jump:
             self.y += 1
@@ -20,7 +22,8 @@ class player(cocos.sprite.Sprite):
 
     def land(self, y):
         if self.y > y - 30:
-            self.can_jump = True
+            if self.isShadow == False:
+                self.can_jump = True
             self.speed = 0
             self.y = y
 
